@@ -1,0 +1,14 @@
+edu\pc\alarcon\controller\AuthorController.class
+edu\pc\alarcon\service\FileStorageService.class
+edu\pc\alarcon\controller\AnalysisController.class
+edu\pc\alarcon\service\TextService.class
+edu\pc\alarcon\model\CountResult.class
+edu\pc\alarcon\controller\DictionaryController.class
+edu\pc\alarcon\service\FileStorageService$2.class
+edu\pc\alarcon\service\FileStorageService$1.class
+edu\pc\alarcon\model\TextDocument.class
+edu\pc\alarcon\model\StatsResult.class
+edu\pc\alarcon\model\Word.class
+edu\pc\alarcon\service\AnalysisService.class
+edu\pc\alarcon\service\DictionaryService.class
+edu\pc\alarcon\controller\TextController.class
