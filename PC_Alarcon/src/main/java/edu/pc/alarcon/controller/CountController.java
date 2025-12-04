@@ -16,37 +16,52 @@ public class CountController {
     private final DictionaryService dictionaryService;
     private final TextService textService;
 
+    // Inyección de servicios de diccionario y textos
     public CountController(DictionaryService dictionaryService, TextService textService) {
         this.dictionaryService = dictionaryService;
         this.textService = textService;
     }
 
+    /**
+     * GET /api/count
+     * ----------------------------------------
+     * Realiza un conteo de TODAS las palabras
+     * del diccionario dentro de TODOS los textos.
+     *
+     * Funciona así:
+     * 1) Lee el diccionario
+     * 2) Junta todos los textos
+     * 3) Limpia signos y minúsculas
+     * 4) Divide en palabras
+     * 5) Cuenta coincidencias exactas
+     */
     @GetMapping
     public CountResult count() throws Exception {
 
-        // 1. Obtener diccionario de palabras
+        // Obtener diccionario en minúsculas
         List<String> dictionary = dictionaryService.list()
                 .stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
 
-        // 2. Unir TODOS los textos
+        // Unir todos los textos
         StringBuilder fullText = new StringBuilder();
         for (TextDocument doc : textService.list()) {
             fullText.append(" ").append(doc.getBody());
         }
 
-        // 3. Limpiar texto (minúscula + quitar símbolos)
+        // Limpieza del texto
         String cleanText = fullText.toString()
                 .toLowerCase()
                 .replaceAll("[^a-záéíóúñ0-9 ]", " ");
 
-        // 4. Convertir a lista de palabras
+        // Convertir en lista de palabras
         List<String> words = Arrays.asList(cleanText.split("\\s+"));
 
-        // 5. Contar
+        // Map para almacenar resultados del conteo
         Map<String, Integer> result = new HashMap<>();
 
+        // Contar coincidencias
         for (String word : dictionary) {
             int count = (int) words.stream()
                     .filter(w -> w.equals(word))
@@ -57,4 +72,3 @@ public class CountController {
         return new CountResult(result);
     }
 }
-
