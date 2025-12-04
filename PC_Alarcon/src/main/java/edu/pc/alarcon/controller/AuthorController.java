@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorController {
     @GetMapping("/autor")
     public String autor(){
-        return "Gero Alarcon"; 
+        return "Gero Alarcon" + " Diego Bautista"; 
     }
 }

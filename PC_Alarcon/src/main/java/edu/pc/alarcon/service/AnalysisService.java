@@ -51,7 +51,7 @@ public class AnalysisService {
         int count=0;
         int idx=0;
         while ((idx = text.indexOf(word, idx)) != -1){
-            // ensure word boundary (simple)
+     
             boolean leftOk = idx==0 || !Character.isLetterOrDigit(text.charAt(idx-1));
             int end = idx + word.length();
             boolean rightOk = end==text.length() || !Character.isLetterOrDigit(text.charAt(end));

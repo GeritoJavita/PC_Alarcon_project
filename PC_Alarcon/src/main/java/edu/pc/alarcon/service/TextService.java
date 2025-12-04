@@ -16,7 +16,7 @@ public class TextService {
 
     public TextDocument add(TextDocument doc) throws Exception {
         List<TextDocument> texts = new ArrayList<>(storage.readTexts());
-        // replace if same id
+
         texts.removeIf(t -> t.getId()!=null && t.getId().equals(doc.getId()));
         texts.add(doc);
         storage.writeTexts(texts);
